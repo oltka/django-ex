@@ -6,21 +6,14 @@ pip install -U pip setuptools wheel
 
 echo " -----> Installing Python packages..."
 
-pwd
-
-cd /opt/app-root/src
-
-ls
-
 REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
 
-for file in $REQUIREMENTS_FILE; do
-    if [ -f "$file" ]; then
-        echo " -----> Processing package file: $file."
-        pip install -r $file --wheel-dir /opt/app-root/wheelhouse
-    else
-        echo " -----> Skipping package file: $file."
-    fi
-done
+if [ -f "$file" ]; then
+    echo " -----> Processing package file: $file."
+    pip install -r $file
+else
+    echo " -----> Skipping package file: $file."
+fi
+
 
 echo " -----> Done."
