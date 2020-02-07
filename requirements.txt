@@ -3,11 +3,9 @@ django-debug-toolbar
 gunicorn
 psycopg2
 whitenoise
-time
 json
 http.server
 socketserver
-re
 urllib
 tensorflow
 tensorlayer
