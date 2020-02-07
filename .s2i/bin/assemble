@@ -1,22 +1,24 @@
 #!/bin/bash
 
 set -eo pipefail
+
 echo " -----> Upgrading Python packaging tools."
 pip install -U pip setuptools wheel
 
+REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-/tmp/src/requirements.txt}"
 
-ls /tmp/src/
+echo " -----> Requirement file: $REQUIREMENTS_FILE"
 
-echo " -----> Installing Python packages..."
-
-REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
-
-if [ -f "$file" ]; then
-    echo " -----> Processing package file: $file."
+if [ -f "$REQUIREMENTS_FILE" ]; then
+    echo " -----> Installing Python packages from requirements file..."
+    echo " ----------------------"
+    cat $REQUIREMENTS_FILE
+    echo " ----------------------"
+    
+    echo " -----> Processing requirements file: $REQUIREMENTS_FILE"
     pip install -r $file
 else
-    echo " -----> Skipping package file: $file."
+    echo " -----> Skipping requirements file: $REQUIREMENTS_FILE"
 fi
-
 
 echo " -----> Done."
