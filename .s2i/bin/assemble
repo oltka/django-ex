@@ -1,11 +1,16 @@
 #!/bin/bash
 
 set -eo pipefail
-
 echo " -----> Upgrading Python packaging tools."
 pip install -U pip setuptools wheel
 
 echo " -----> Installing Python packages..."
+
+pwd
+
+cd /opt/app-root/src
+
+ls
 
 REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
 
