@@ -2,10 +2,20 @@
 
 set -eo pipefail
 
-# If a wheelhouse cache directory exists, the repository is being used as
-# input to a wheelhouse build, to build Python wheels for required packages.
-# In this case fall through to executing the original 'assemble' script.
+echo " -----> Upgrading Python packaging tools."
+pip install -U pip setuptools wheel
 
-if [ -d /opt/app-root/wheelhouse ]; then
-    exec /opt/app-root/s2i/assemble
-fi
+echo " -----> Installing Python packages..."
+
+REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
+
+for file in $REQUIREMENTS_FILE; do
+    if [ -f "$file" ]; then
+        echo " -----> Processing package file: $file."
+        pip install -r $file --wheel-dir /opt/app-root/wheelhouse
+    else
+        echo " -----> Skipping package file: $file."
+    fi
+done
+
+echo " -----> Done."
