@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eo pipefail
+
+# If a wheelhouse cache directory exists, the repository is being used as
+# input to a wheelhouse build, to build Python wheels for required packages.
+# In this case fall through to executing the original 'assemble' script.
+
+if [ -d /opt/app-root/wheelhouse ]; then
+    exec /opt/app-root/s2i/assemble
+fi
