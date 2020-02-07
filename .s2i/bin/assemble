@@ -10,13 +10,13 @@ REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-/tmp/src/requirements.txt}"
 echo " -----> Requirement file: $REQUIREMENTS_FILE"
 
 if [ -f "$REQUIREMENTS_FILE" ]; then
-    echo " -----> Installing Python packages from requirements file..."
-    echo " ----------------------"
+    echo " -----> Installing Python packages from $REQUIREMENTS_FILE file..."
+    echo " ------------------------------------------------------------------"
     cat $REQUIREMENTS_FILE
-    echo " ----------------------"
+    echo " ------------------------------------------------------------------"
     
     echo " -----> Processing requirements file: $REQUIREMENTS_FILE"
-    pip install -r $file
+    pip install -r $REQUIREMENTS_FILE
 else
     echo " -----> Skipping requirements file: $REQUIREMENTS_FILE"
 fi
