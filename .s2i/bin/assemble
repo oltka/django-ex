@@ -4,6 +4,9 @@ set -eo pipefail
 echo " -----> Upgrading Python packaging tools."
 pip install -U pip setuptools wheel
 
+
+ls /tmp/src/
+
 echo " -----> Installing Python packages..."
 
 REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
