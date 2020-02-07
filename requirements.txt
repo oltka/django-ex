@@ -3,13 +3,8 @@ django-debug-toolbar
 gunicorn
 psycopg2
 whitenoise
-json
-http.server
-socketserver
-urllib
 tensorflow
 tensorlayer
 numpy
 data
-getopt
 configparser
